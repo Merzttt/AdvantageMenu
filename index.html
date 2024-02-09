@@ -8,15 +8,17 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Circular'; /* Circular as the fallback if custom font isn't available */
+      font-family: 'Circular', sans-serif; /* Circular as the fallback if custom font isn't available */
       background-color: #242424;
       display: flex;
       align-items: center;
       justify-content: center;
       height: 100vh;
+      overflow: hidden; /* Hide scrollbar */
     }
 
     #coolBox {
+      position: relative;
       width: 300px; /* Adjust the size as you like */
       height: 300px; /* Adjust the size as you like */
       background: radial-gradient(circle at center, #242424, #242454, #61dafb); /* Blue to off-white to white gradient */
@@ -50,6 +52,15 @@
     #coolBox:hover {
       transform: scale(1.1); /* Dynamic scaling on hover */
     }
+
+    #rectangle {
+      position: absolute;
+      width: 20px;
+      height: 200px;
+      background-color: #fff; /* White color for the rectangle */
+      transform-origin: bottom center;
+      transition: transform 0.2s ease-in-out;
+    }
   </style>
 </head>
 <body>
@@ -57,6 +68,18 @@
     <h1>Cool Header</h1>
     <p>Your text goes here</p>
     <button>Example Button</button>
+    <div id="rectangle"></div>
   </div>
+
+  <script>
+    const coolBox = document.getElementById('coolBox');
+    const rectangle = document.getElementById('rectangle');
+
+    coolBox.addEventListener('mousemove', (e) => {
+      const mouseX = e.clientX - coolBox.getBoundingClientRect().left;
+      const rotation = (mouseX / coolBox.offsetWidth - 0.5) * 90; // Adjust rotation speed here
+      rectangle.style.transform = `rotate(${rotation}deg)`;
+    });
+  </script>
 </body>
 </html>
