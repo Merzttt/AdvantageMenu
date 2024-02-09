@@ -9,7 +9,7 @@
     body {
       margin: 0;
       font-family: 'Circular', sans-serif; /* Circular as the fallback if custom font isn't available */
-      background-color: #FAF9F6;
+      background-color: #f5f5f5;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -19,17 +19,23 @@
     #coolBox {
       width: 300px; /* Adjust the size as you like */
       height: 300px; /* Adjust the size as you like */
-      background: radial-gradient(circle at center, #61dafb, #f0f0f0, #FAF9F6); /* White to off-white to blue gradient */
+      background: radial-gradient(circle at center, #61dafb, #f0f0f0, #FAF9F6); /* Blue to off-white to white gradient */
       border-radius: 50%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       transition: transform 0.3s ease-in-out;
+      user-select: none; /* Make text non-selectable */
     }
 
     h1 {
       color: #333; /* Dark text color */
+      user-select: none; /* Make text non-selectable */
+    }
+
+    p {
+      user-select: none; /* Make text non-selectable */
     }
 
     button {
