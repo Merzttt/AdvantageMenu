@@ -3,55 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Awesome Website</title>
+  <title>Cool Dark Site</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Circular:wght@400;700&display=swap">
   <style>
     body {
       margin: 0;
       font-family: 'Circular', sans-serif; /* Circular as the fallback if custom font isn't available */
-      background-color: #242424;
+      background-color: #1a1a1a; /* Dark background color */
+      color: #ddd; /* Light text color */
       display: flex;
       align-items: center;
       justify-content: center;
       height: 100vh;
-      overflow: hidden; /* Hide scrollbar */
     }
 
-    #coolBox {
-      position: relative;
-      width: 300px; /* Adjust the size as you like */
-      height: 300px; /* Adjust the size as you like */
-      background: radial-gradient(circle at center, #353535, #656565, #444444); /* Blue to off-white to white gradient */
-      border-radius: 50%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.3s ease-in-out;
-      user-select: none; /* Make text non-selectable */
+    #coolText {
+      font-size: 2em; /* Adjust text size */
+      border-radius: 10px; /* Rounded corners */
+      padding: 10px; /* Padding for a bit of space */
+      background-color: #333; /* Darker background for text */
+      display: inline-block;
     }
 
-    h1 {
-      color: #333; /* Dark text color */
-      user-select: none; /* Make text non-selectable */
-    }
-
-    p {
-      user-select: none; /* Make text non-selectable */
-    }
-
-    button {
-      padding: 10px;
+    #tempButton {
+      padding: 10px 20px; /* Adjust padding for pill shape */
       background-color: #4caf50; /* Green button color, change as you like */
       color: #fff; /* White text color */
       border: none;
+      border-radius: 15px; /* Adjust border radius for rounded corners */
       cursor: pointer;
       margin-top: 20px;
     }
 
-    #coolBox:hover {
-      transform: scale(1.1); /* Dynamic scaling on hover */
+    #tempButton:hover {
+      background-color: #45a049; /* Darker green on hover */
     }
   </style>
 </head>
+<body>
+  <div id="coolText">Cool Styled Text</div>
+  <button id="tempButton">Temp Button</button>
+</body>
 </html>
